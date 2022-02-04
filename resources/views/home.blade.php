@@ -13,6 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <img style="width: 300px;" src="{{URL::to('media/user/'.Auth::user()-> photo)}}" alt="">
                     <h1 class="display-4">{{Auth::user()-> name}}</h1>
                     <table class="table">
                         <tr>

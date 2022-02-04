@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,15 +63,24 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(array $data, $request)
     {
+        $file_name='';
+        if($request->hasFile('photo')){
+            $img = $request->file('photo');
+            $file_name= md5(time().rand()).'.'. $img -> getClientOriginalExtension();
+            $img->move(public_path('media/user/'),$file_name);
+        }
+        
         return User::create([
             'name' => $data['name'],
             'uname' => $data['uname'],
             'email' => $data['email'],
             'cell' => $data['cell'],
             'location' => $data['location'],
+            'photo' => $file_name,
             'password' => Hash::make($data['password']),
         ]);
     }
+    
 }
