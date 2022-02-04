@@ -13,8 +13,29 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <h1 class="display-4">{{Auth::user()-> name}}</h1>
+                    <table class="table">
+                        <tr>
+                            <td>Name</td>
+                            <td>{{Auth::user()-> name}}</td>
+                        </tr>
+                        <tr>
+                            <td>User Name</td>
+                            <td>{{Auth::user()-> uname}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{Auth::user()-> email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Cell</td>
+                            <td>{{Auth::user()-> cell}}</td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>{{Auth::user()-> location}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
